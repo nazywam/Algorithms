@@ -16,6 +16,15 @@ void kmp(string pattern, string text, int* prefixTable){ //run prefix algorithm 
 	}
 }
 
+int minPeriod(int n, int* prefixTable){
+	int maxPrefSuf = 0;
+
+	for(int x=0; x<n; x++){
+		maxPrefSuf = max(maxPrefSuf, prefixTable[x]);
+	}
+	return n - maxPrefSuf;
+}
+
 int main(){
 	string pattern = "cat";
 	string text = "tacocattacocat";
@@ -24,6 +33,7 @@ int main(){
 	int* prefixTable = new int[data.size()+1];
 
 	kmp(pattern, text, prefixTable);
+	
 	
 	//find occurences of pattern in text
 	for(int x=1; x<=data.size(); x++){
